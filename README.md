@@ -272,8 +272,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/kryonlabs/kry-vscode-extension/issues)
-- **Documentation**: [KRY Language Docs](https://kryonlabs.dev/docs)
-- **Community**: [Discord](https://discord.gg/kryonlabs)
+- **Documentation**: [KRY Language Docs](https://docs.kryonlabs.com)
 
 ---
 

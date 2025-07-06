@@ -29,12 +29,12 @@
     "engines": {
         "vscode": "^1.74.0"
     },
-    "license": "MIT",
+    "license": "0BSD",
     "repository": {
         "type": "git",
         "url": "https://github.com/kryonlabs/kry-vscode-extension"
     },
-    "homepage": "https://kryonlabs.dev",
+    "homepage": "https://docs.kryonlabs.com",
     "activationEvents": [
         "onLanguage:kry"
     ],
