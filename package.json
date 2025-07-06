@@ -128,8 +128,8 @@
         "lint:fix": "eslint src --ext ts --fix",
         "test": "node ./out/test/runTest.js",
         "pretest": "npm run compile && npm run lint",
-        "package": "vsce package",
-        "deploy": "vsce publish",
+        "package": "npx vsce package",
+        "deploy": "npx vsce publish",
         "build": "npm run compile && npm run package",
         "clean": "rimraf out *.vsix"
     },
@@ -141,10 +141,11 @@
         "@typescript-eslint/parser": "^6.15.0",
         "@vscode/test-electron": "^2.3.8",
         "eslint": "^8.56.0",
+        "glob": "^8.1.0",
         "mocha": "^10.2.0",
         "rimraf": "^5.0.5",
         "typescript": "^5.3.3",
-        "vsce": "^2.22.0"
+        "@vscode/vsce": "^2.22.0"
     },
     "dependencies": {
         "vscode-languageclient": "^8.1.0"
