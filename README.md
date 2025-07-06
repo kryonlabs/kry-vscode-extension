@@ -267,7 +267,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+0BSD License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 

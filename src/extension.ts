@@ -90,7 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
             'Don\'t show again'
         ).then((selection) => {
             if (selection === 'Open Documentation') {
-                vscode.env.openExternal(vscode.Uri.parse('https://kryonlabs.dev/docs'));
+                vscode.env.openExternal(vscode.Uri.parse('https://docs.kryonlabs.com'));
             } else if (selection === 'Don\'t show again') {
                 context.globalState.update('hasShownWelcome', true);
             }
