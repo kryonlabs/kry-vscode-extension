@@ -1,0 +1,168 @@
+name: Build and Release VSCode Extension
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Lint code
+      run: npm run lint
+      
+    - name: Compile TypeScript
+      run: npm run compile
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Package extension
+      run: npm run package
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: kry-extension-${{ github.sha }}
+        path: '*.vsix'
+        retention-days: 30
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Package extension
+      run: npm run package
+      
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: KRY Language Support v${{ steps.get_version.outputs.VERSION }}
+        body: |
+          ## KRY Language Support v${{ steps.get_version.outputs.VERSION }}
+          
+          ### 🚀 What's New
+          - Check [CHANGELOG.md](CHANGELOG.md) for detailed changes
+          
+          ### 📦 Installation
+          1. Download the `.vsix` file below
+          2. Open VS Code
+          3. Run command: `Extensions: Install from VSIX...`
+          4. Select the downloaded file
+          
+          ### 📋 Requirements
+          - Visual Studio Code 1.74.0 or higher
+          - For embedded script highlighting:
+            - Lua extension (recommended: sumneko.lua)
+            - Python extension (recommended: ms-python.python)
+          
+          ### 🆘 Support
+          - [Issues](https://github.com/kryonlabs/kry-vscode-extension/issues)
+          - [Documentation](https://kryonlabs.dev/docs)
+          
+          ---
+          **Full Changelog**: https://github.com/kryonlabs/kry-vscode-extension/compare/v${{ steps.get_version.outputs.VERSION }}...HEAD
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./kry-language-support-${{ steps.get_version.outputs.VERSION }}.vsix
+        asset_name: kry-language-support-${{ steps.get_version.outputs.VERSION }}.vsix
+        asset_content_type: application/zip
+
+  publish-marketplace:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: marketplace
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Package extension
+      run: npm run package
+      
+    - name: Publish to VS Code Marketplace
+      run: npm run deploy
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+  publish-ovsx:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: ovsx
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Package extension
+      run: npm run package
+      
+    - name: Publish to Open VSX Registry
+      run: npx ovsx publish *.vsix
+      env:
+        OVSX_PAT: ${{ secrets.OVSX_PAT }}

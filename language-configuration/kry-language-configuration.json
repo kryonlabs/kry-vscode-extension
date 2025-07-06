@@ -1,0 +1,57 @@
+{
+    "comments": {
+        "lineComment": "#",
+        "blockComment": ["/*", "*/"]
+    },
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*#\\s*region\\b",
+            "end": "^\\s*#\\s*endregion\\b"
+        },
+        "offSide": true
+    },
+    "wordPattern": "([a-zA-Z_$][\\w$]*)",
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*((App|Container|Text|Button|Input|Image|style|Define)\\s*\\{[^}\"'`]*$)|^\\s*@(variables|script)\\s*\\{[^}]*$",
+        "decreaseIndentPattern": "^\\s*\\}\\s*$"
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*#.*$",
+            "action": {
+                "indent": "none"
+            }
+        },
+        {
+            "beforeText": "\\{\\s*$",
+            "action": {
+                "indent": "indent"
+            }
+        },
+        {
+            "beforeText": "^\\s*\\}",
+            "action": {
+                "indent": "outdent"
+            }
+        }
+    ]
+}

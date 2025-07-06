@@ -1,0 +1,322 @@
+{
+    "App Element": {
+        "prefix": "app",
+        "scope": "kry",
+        "body": [
+            "App {",
+            "\twindow_width: ${1:800}",
+            "\twindow_height: ${2:600}",
+            "\twindow_title: \"${3:My App}\"",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create an App element"
+    },
+    "Container Element": {
+        "prefix": "container",
+        "scope": "kry",
+        "body": [
+            "Container {",
+            "\tid: \"${1:container}\"",
+            "\tlayout: ${2:column start}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a Container element"
+    },
+    "Text Element": {
+        "prefix": "text",
+        "scope": "kry",
+        "body": [
+            "Text {",
+            "\tid: \"${1:text}\"",
+            "\ttext: \"${2:Hello World}\"",
+            "\ttext_alignment: ${3:center}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a Text element"
+    },
+    "Button Element": {
+        "prefix": "button",
+        "scope": "kry",
+        "body": [
+            "Button {",
+            "\tid: \"${1:button}\"",
+            "\ttext: \"${2:Click Me}\"",
+            "\tonClick: \"${3:button_clicked}\"",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a Button element"
+    },
+    "Input Element": {
+        "prefix": "input",
+        "scope": "kry",
+        "body": [
+            "Input {",
+            "\tid: \"${1:input}\"",
+            "\tplaceholder: \"${2:Enter text...}\"",
+            "\tonSubmit: \"${3:input_submitted}\"",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create an Input element"
+    },
+    "Image Element": {
+        "prefix": "image",
+        "scope": "kry",
+        "body": [
+            "Image {",
+            "\tid: \"${1:image}\"",
+            "\tsrc: \"${2:image.png}\"",
+            "\twidth: ${3:100}",
+            "\theight: ${4:100}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create an Image element"
+    },
+    "Style Definition": {
+        "prefix": "style",
+        "scope": "kry",
+        "body": [
+            "style \"${1:style_name}\" {",
+            "\tbackground_color: \"${2:#FFFFFFFF}\"",
+            "\ttext_color: \"${3:#000000FF}\"",
+            "\tlayout: ${4:column start}",
+            "\tpadding: ${5:10}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a style definition"
+    },
+    "Style with Hover": {
+        "prefix": "stylehover",
+        "scope": "kry",
+        "body": [
+            "style \"${1:style_name}\" {",
+            "\tbackground_color: \"${2:#FFFFFFFF}\"",
+            "\ttext_color: \"${3:#000000FF}\"",
+            "\t",
+            "\t&:hover {",
+            "\t\tbackground_color: \"${4:#CCCCCCFF}\"",
+            "\t}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a style definition with hover state"
+    },
+    "Component Definition": {
+        "prefix": "define",
+        "scope": "kry",
+        "body": [
+            "Define ${1:ComponentName} {",
+            "\tProperties {",
+            "\t\t${2:text}: String = \"${3:Default Text}\"",
+            "\t\t${4:size}: Number = ${5:100}",
+            "\t}",
+            "\t",
+            "\tContainer {",
+            "\t\tstyle: \"${6:component_style}\"",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ],
+        "description": "Create a component definition with properties"
+    },
+    "Variables Block": {
+        "prefix": "variables",
+        "scope": "kry",
+        "body": [
+            "@variables {",
+            "\t${1:primary_color}: \"${2:#0066CCFF}\"",
+            "\t${3:text_color}: \"${4:#FFFFFFFF}\"",
+            "\t${5:window_width}: ${6:800}",
+            "\t${7:window_height}: ${8:600}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a variables block"
+    },
+    "Include Directive": {
+        "prefix": "include",
+        "scope": "kry",
+        "body": [
+            "@include \"${1:component.kry}\""
+        ],
+        "description": "Include another KRY file"
+    },
+    "Lua Script Block": {
+        "prefix": "luascript",
+        "scope": "kry",
+        "body": [
+            "@script \"lua\" {",
+            "\t-- ${1:Lua script code}",
+            "\tfunction ${2:function_name}()",
+            "\t\t${3:-- Implementation}",
+            "\t\tprint(\"${4:Hello from Lua}\")",
+            "\tend",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a Lua script block"
+    },
+    "JavaScript Script Block": {
+        "prefix": "jsscript",
+        "scope": "kry",
+        "body": [
+            "@script \"javascript\" {",
+            "\t// ${1:JavaScript code}",
+            "\tfunction ${2:functionName}() {",
+            "\t\t${3:// Implementation}",
+            "\t\tconsole.log(\"${4:Hello from JavaScript}\");",
+            "\t}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a JavaScript script block"
+    },
+    "Python Script Block": {
+        "prefix": "pyscript",
+        "scope": "kry",
+        "body": [
+            "@script \"python\" {",
+            "\t# ${1:Python code}",
+            "\tdef ${2:function_name}():",
+            "\t\t${3:# Implementation}",
+            "\t\tprint(\"${4:Hello from Python}\")",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a Python script block"
+    },
+    "Layout Row": {
+        "prefix": "layoutrow",
+        "scope": "kry",
+        "body": [
+            "Container {",
+            "\tlayout: row ${1:start}",
+            "\tgap: ${2:10}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a row layout container"
+    },
+    "Layout Column": {
+        "prefix": "layoutcol",
+        "scope": "kry",
+        "body": [
+            "Container {",
+            "\tlayout: column ${1:start}",
+            "\tgap: ${2:10}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a column layout container"
+    },
+    "Full App Template": {
+        "prefix": "apptemplate",
+        "scope": "kry",
+        "body": [
+            "# ${1:App Name}",
+            "# ${2:Description}",
+            "",
+            "@variables {",
+            "\tprimary_color: \"${3:#0066CCFF}\"",
+            "\tbackground_color: \"${4:#191919FF}\"",
+            "\ttext_color: \"${5:#FFFFFFFF}\"",
+            "\twindow_width: ${6:800}",
+            "\twindow_height: ${7:600}",
+            "}",
+            "",
+            "style \"main_container\" {",
+            "\tbackground_color: \\$background_color",
+            "\ttext_color: \\$text_color",
+            "\tlayout: column center",
+            "\tpadding: 20",
+            "}",
+            "",
+            "App {",
+            "\twindow_width: \\$window_width",
+            "\twindow_height: \\$window_height",
+            "\twindow_title: \"${8:My Kryon App}\"",
+            "\tstyle: \"main_container\"",
+            "\t",
+            "\t${9:# Add your UI elements here}",
+            "\t$0",
+            "}",
+            "",
+            "@script \"lua\" {",
+            "\t-- Application logic",
+            "\tfunction init_app()",
+            "\t\tprint(\"App initialized\")",
+            "\tend",
+            "\t",
+            "\tinit_app()",
+            "}"
+        ],
+        "description": "Create a complete app template"
+    },
+    "Color Hex": {
+        "prefix": "colorhex",
+        "scope": "kry",
+        "body": [
+            "\"#${1:FF}${2:FF}${3:FF}${4:FF}\""
+        ],
+        "description": "Insert hex color with alpha (RGBA)"
+    },
+    "DOM Element Access": {
+        "prefix": "getelementbyid",
+        "scope": "kry",
+        "body": [
+            "local ${1:element} = getElementById(\"${2:element_id}\")"
+        ],
+        "description": "Get element by ID in Lua script"
+    },
+    "Element Method Call": {
+        "prefix": "elementmethod",
+        "scope": "kry",
+        "body": [
+            "${1:element}:${2:setText}(\"${3:value}\")"
+        ],
+        "description": "Call method on element in Lua script"
+    },
+    "Event Handler Function": {
+        "prefix": "eventhandler",
+        "scope": "kry",
+        "body": [
+            "function ${1:handler_name}()",
+            "\t${2:-- Handle event}",
+            "\tlocal element = getElementById(\"${3:element_id}\")",
+            "\tif element then",
+            "\t\t${4:-- Perform action}",
+            "\tend",
+            "end"
+        ],
+        "description": "Create an event handler function"
+    },
+    "Flexbox Layout": {
+        "prefix": "flexbox",
+        "scope": "kry",
+        "body": [
+            "Container {",
+            "\tlayout: ${1:row} ${2:space_between}",
+            "\talign_items: ${3:center}",
+            "\tgap: ${4:10}",
+            "\tpadding: ${5:10}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a flexbox layout container"
+    },
+    "Responsive Size": {
+        "prefix": "responsive",
+        "scope": "kry",
+        "body": [
+            "width: \\$window_width${1: * 0.8}",
+            "height: \\$window_height${2: * 0.6}"
+        ],
+        "description": "Create responsive width and height"
+    }
+}

@@ -1,0 +1,559 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "KRY",
+    "scopeName": "source.kry",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#directives"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#embedded-scripts"
+        },
+        {
+            "include": "#component-definitions"
+        },
+        {
+            "include": "#style-definitions"
+        },
+        {
+            "include": "#ui-elements"
+        },
+        {
+            "include": "#properties"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#operators"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.number-sign.kry",
+                    "match": "#.*$"
+                },
+                {
+                    "name": "comment.block.kry",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "directives": {
+            "patterns": [
+                {
+                    "name": "keyword.control.directive.kry",
+                    "match": "^\\s*@(include|variables|script)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "support.function.directive.kry"
+                        }
+                    }
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "meta.variables.kry",
+                    "begin": "^\\s*@variables\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.variables.kry"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.variables.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#variable-definition"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                },
+                {
+                    "name": "variable.other.substitution.kry",
+                    "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+                    "captures": {
+                        "0": {
+                            "name": "variable.other.substitution.kry"
+                        }
+                    }
+                }
+            ]
+        },
+        "variable-definition": {
+            "patterns": [
+                {
+                    "name": "meta.variable-definition.kry",
+                    "match": "\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*:\\s*(.+)$",
+                    "captures": {
+                        "1": {
+                            "name": "variable.other.definition.kry"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#strings"
+                                },
+                                {
+                                    "include": "#numbers"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "embedded-scripts": {
+            "patterns": [
+                {
+                    "name": "meta.embedded.lua",
+                    "begin": "@script\\s+\"lua\"\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.lua"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.embedded.javascript",
+                    "begin": "@script\\s+\"javascript\"\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.js"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.embedded.python",
+                    "begin": "@script\\s+\"python\"\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.python"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.embedded.wren",
+                    "begin": "@script\\s+\"wren\"\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.directive.script.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.wren"
+                        }
+                    ]
+                }
+            ]
+        },
+        "component-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.component-definition.kry",
+                    "begin": "\\b(Define)\\s+([A-Z][a-zA-Z0-9_]*)\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.define.kry"
+                        },
+                        "2": {
+                            "name": "entity.name.type.component.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#properties-block"
+                        },
+                        {
+                            "include": "#ui-elements"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "properties-block": {
+            "patterns": [
+                {
+                    "name": "meta.properties-block.kry",
+                    "begin": "\\b(Properties)\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.properties.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#property-definition"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "property-definition": {
+            "patterns": [
+                {
+                    "name": "meta.property-definition.kry",
+                    "match": "\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*:\\s*(String|Number|Boolean)\\s*(=\\s*(.+))?",
+                    "captures": {
+                        "1": {
+                            "name": "variable.other.property.kry"
+                        },
+                        "2": {
+                            "name": "storage.type.kry"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "include": "#strings"
+                                },
+                                {
+                                    "include": "#numbers"
+                                },
+                                {
+                                    "include": "#boolean"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "style-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.style-definition.kry",
+                    "begin": "\\b(style)\\s+(\"[^\"]+\")\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.style.kry"
+                        },
+                        "2": {
+                            "name": "entity.name.tag.style.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#style-properties"
+                        },
+                        {
+                            "include": "#pseudo-selectors"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "pseudo-selectors": {
+            "patterns": [
+                {
+                    "name": "meta.pseudo-selector.kry",
+                    "begin": "&:(hover|active|checked|disabled|focus)\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "entity.other.attribute-name.pseudo-class.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#style-properties"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "style-properties": {
+            "patterns": [
+                {
+                    "name": "meta.style-property.kry",
+                    "match": "\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*:\\s*(.+)",
+                    "captures": {
+                        "1": {
+                            "name": "support.type.property-name.kry"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#variables"
+                                },
+                                {
+                                    "include": "#strings"
+                                },
+                                {
+                                    "include": "#numbers"
+                                },
+                                {
+                                    "include": "#keywords"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "ui-elements": {
+            "patterns": [
+                {
+                    "name": "meta.ui-element.kry",
+                    "begin": "\\b(App|Container|Text|Button|Input|Image)\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.name.tag.ui-element.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#properties"
+                        },
+                        {
+                            "include": "#ui-elements"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.custom-component.kry",
+                    "begin": "\\b([A-Z][a-zA-Z0-9_]*)\\s*\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.name.tag.custom-component.kry"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#properties"
+                        },
+                        {
+                            "include": "#ui-elements"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "properties": {
+            "patterns": [
+                {
+                    "name": "meta.property.kry",
+                    "match": "\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*:\\s*(.+)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.other.property.kry"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#variables"
+                                },
+                                {
+                                    "include": "#strings"
+                                },
+                                {
+                                    "include": "#numbers"
+                                },
+                                {
+                                    "include": "#boolean"
+                                },
+                                {
+                                    "include": "#layout-keywords"
+                                },
+                                {
+                                    "include": "#function-calls"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "function-calls": {
+            "patterns": [
+                {
+                    "name": "meta.function-call.kry",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.kry"
+                        }
+                    }
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.kry",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.kry",
+                            "match": "\\\\."
+                        },
+                        {
+                            "include": "#variables"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.kry",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.kry",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.hex.kry",
+                    "match": "\\b0[xX][0-9a-fA-F]+\\b"
+                },
+                {
+                    "name": "constant.numeric.float.kry",
+                    "match": "\\b\\d+\\.\\d+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.kry",
+                    "match": "\\b\\d+\\b"
+                }
+            ]
+        },
+        "boolean": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.kry",
+                    "match": "\\b(true|false)\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.kry",
+                    "match": "\\b(if|else|for|while|break|continue|return)\\b"
+                },
+                {
+                    "name": "storage.type.kry",
+                    "match": "\\b(String|Number|Boolean)\\b"
+                }
+            ]
+        },
+        "layout-keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.other.layout.kry",
+                    "match": "\\b(row|column|absolute|grow|center|start|end|space_between|space_around|stretch)\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.assignment.kry",
+                    "match": "[:=]"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.kry",
+                    "match": "[+\\-*/]"
+                },
+                {
+                    "name": "keyword.operator.comparison.kry",
+                    "match": "(==|!=|<=|>=|<|>)"
+                },
+                {
+                    "name": "keyword.operator.logical.kry",
+                    "match": "(&&|\\|\\||!)"
+                }
+            ]
+        }
+    }
+}

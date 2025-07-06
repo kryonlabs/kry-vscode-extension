@@ -1,0 +1,199 @@
+{
+    "name": "KRY Dark",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#191919",
+        "editor.foreground": "#FFFFFF",
+        "editorLineNumber.foreground": "#666666",
+        "editorCursor.foreground": "#0066CC",
+        "editor.selectionBackground": "#0066CC40",
+        "editor.inactiveSelectionBackground": "#0066CC20",
+        "editorWhitespace.foreground": "#404040",
+        "editorIndentGuide.background": "#404040",
+        "editorIndentGuide.activeBackground": "#0066CC",
+        "editorGroupHeader.tabsBackground": "#1E1E1E",
+        "tab.activeBackground": "#191919",
+        "tab.inactiveBackground": "#1E1E1E",
+        "tab.activeForeground": "#FFFFFF",
+        "tab.inactiveForeground": "#CCCCCC",
+        "activityBar.background": "#1E1E1E",
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#1E1E1E",
+        "sideBar.foreground": "#FFFFFF",
+        "statusBar.background": "#0066CC",
+        "statusBar.foreground": "#FFFFFF"
+    },
+    "tokenColors": [
+        {
+            "name": "Comment",
+            "scope": [
+                "comment",
+                "comment.line",
+                "comment.block"
+            ],
+            "settings": {
+                "foreground": "#6A9955",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "KRY Directive",
+            "scope": [
+                "keyword.control.directive.kry",
+                "support.function.directive.kry"
+            ],
+            "settings": {
+                "foreground": "#C586C0",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "KRY UI Elements",
+            "scope": [
+                "entity.name.tag.ui-element.kry",
+                "entity.name.tag.custom-component.kry"
+            ],
+            "settings": {
+                "foreground": "#4EC9B0",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "KRY Style Names",
+            "scope": [
+                "entity.name.tag.style.kry"
+            ],
+            "settings": {
+                "foreground": "#DCDCAA",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "KRY Properties",
+            "scope": [
+                "variable.other.property.kry",
+                "support.type.property-name.kry"
+            ],
+            "settings": {
+                "foreground": "#9CDCFE"
+            }
+        },
+        {
+            "name": "KRY Variables",
+            "scope": [
+                "variable.other.substitution.kry",
+                "variable.other.definition.kry"
+            ],
+            "settings": {
+                "foreground": "#FFD700",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "String",
+            "scope": [
+                "string.quoted",
+                "string.quoted.double",
+                "string.quoted.single"
+            ],
+            "settings": {
+                "foreground": "#CE9178"
+            }
+        },
+        {
+            "name": "Number",
+            "scope": [
+                "constant.numeric"
+            ],
+            "settings": {
+                "foreground": "#B5CEA8"
+            }
+        },
+        {
+            "name": "Boolean",
+            "scope": [
+                "constant.language.boolean"
+            ],
+            "settings": {
+                "foreground": "#569CD6"
+            }
+        },
+        {
+            "name": "KRY Keywords",
+            "scope": [
+                "keyword.control.kry",
+                "storage.type.kry",
+                "keyword.other.layout.kry"
+            ],
+            "settings": {
+                "foreground": "#569CD6",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "KRY Component Definition",
+            "scope": [
+                "keyword.control.define.kry",
+                "entity.name.type.component.kry"
+            ],
+            "settings": {
+                "foreground": "#4EC9B0",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "KRY Pseudo Selectors",
+            "scope": [
+                "entity.other.attribute-name.pseudo-class.kry"
+            ],
+            "settings": {
+                "foreground": "#D7BA7D"
+            }
+        },
+        {
+            "name": "KRY Function Calls",
+            "scope": [
+                "entity.name.function.kry"
+            ],
+            "settings": {
+                "foreground": "#DCDCAA"
+            }
+        },
+        {
+            "name": "Embedded Script - Lua",
+            "scope": [
+                "meta.embedded.lua"
+            ],
+            "settings": {
+                "foreground": "#E0E0E0"
+            }
+        },
+        {
+            "name": "Embedded Script - JavaScript",
+            "scope": [
+                "meta.embedded.javascript"
+            ],
+            "settings": {
+                "foreground": "#E0E0E0"
+            }
+        },
+        {
+            "name": "Embedded Script - Python",
+            "scope": [
+                "meta.embedded.python"
+            ],
+            "settings": {
+                "foreground": "#E0E0E0"
+            }
+        },
+        {
+            "name": "Operators",
+            "scope": [
+                "keyword.operator"
+            ],
+            "settings": {
+                "foreground": "#D4D4D4"
+            }
+        }
+    ]
+}
