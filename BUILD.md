@@ -88,7 +88,7 @@ The repository includes automated GitHub Actions workflows:
 
 ### Triggered Events
 
-- **Push to main/develop**: Builds and tests the extension
+- **Push to master/develop**: Builds and tests the extension
 - **Pull requests**: Validates code quality and tests
 - **Tagged releases** (v*): Creates releases with downloadable .vsix files
 
@@ -124,7 +124,7 @@ git commit -m "Release v1.0.1"
 
 # Create and push tag
 git tag v1.0.1
-git push origin main --tags
+git push origin master --tags
 ```
 
 ### 2. GitHub Actions Automation
