@@ -58,7 +58,7 @@
             "patterns": [
                 {
                     "name": "keyword.control.directive.kry",
-                    "match": "^\\s*@(include|variables|script)\\b",
+                    "match": "^\\s*@(include|variables|script|function)\\b",
                     "captures": {
                         "1": {
                             "name": "support.function.directive.kry"
@@ -130,7 +130,7 @@
             "patterns": [
                 {
                     "name": "meta.embedded.lua",
-                    "begin": "@script\\s+\"lua\"\\s*\\{",
+                    "begin": "@(script|function)\\s+\"lua\"[^{]*\\{",
                     "end": "\\}",
                     "beginCaptures": {
                         "0": {
@@ -150,7 +150,7 @@
                 },
                 {
                     "name": "meta.embedded.javascript",
-                    "begin": "@script\\s+\"javascript\"\\s*\\{",
+                    "begin": "@(script|function)\\s+\"javascript\"[^{]*\\{",
                     "end": "\\}",
                     "beginCaptures": {
                         "0": {
@@ -170,7 +170,7 @@
                 },
                 {
                     "name": "meta.embedded.python",
-                    "begin": "@script\\s+\"python\"\\s*\\{",
+                    "begin": "@(script|function)\\s+\"python\"[^{]*\\{",
                     "end": "\\}",
                     "beginCaptures": {
                         "0": {
@@ -190,7 +190,7 @@
                 },
                 {
                     "name": "meta.embedded.wren",
-                    "begin": "@script\\s+\"wren\"\\s*\\{",
+                    "begin": "@(script|function)\\s+\"wren\"[^{]*\\{",
                     "end": "\\}",
                     "beginCaptures": {
                         "0": {
